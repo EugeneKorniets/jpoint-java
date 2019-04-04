@@ -60,7 +60,7 @@ public class AdminRestController {
             createUserResponse.setId(id);
 
         } catch (UserCreationException e) {
-            log.info("Error during creating user for request", createUserRequest, e);
+            log.info("Error during creating user for request={}", createUserRequest, e);
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             createUserResponse.setError(new Error(String.valueOf(e.getCode()), e.getMessage()));
         }
@@ -79,7 +79,7 @@ public class AdminRestController {
             successOrErrorResponse.setSuccess(true);
 
         } catch (Exception e) {
-            log.error("Error while updating user for request", updateUserRequest, e);
+            log.error("Error while updating user for request={}", updateUserRequest, e);
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
             if (e instanceof UserNotFoundException) {
