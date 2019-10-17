@@ -1,4 +1,4 @@
-package ru.sportmaster.jpoint_2019;
+package ru.sportmaster.smlab.quiz;
 
 
 import org.springframework.boot.SpringApplication;

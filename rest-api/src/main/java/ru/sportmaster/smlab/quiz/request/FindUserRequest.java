@@ -1,4 +1,4 @@
-package ru.sportmaster.jpoint_2019.request;
+package ru.sportmaster.smlab.quiz.request;
 
 import lombok.Data;
 import org.springframework.data.domain.Sort;

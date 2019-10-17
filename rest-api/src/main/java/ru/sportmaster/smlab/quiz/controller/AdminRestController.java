@@ -1,18 +1,18 @@
-package ru.sportmaster.jpoint_2019.controller;
+package ru.sportmaster.smlab.quiz.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import ru.sportmaster.jpoint_2019.exception.UserCreationException;
-import ru.sportmaster.jpoint_2019.exception.UserNotFoundException;
-import ru.sportmaster.jpoint_2019.request.CreateUserRequest;
-import ru.sportmaster.jpoint_2019.request.FindUserRequest;
-import ru.sportmaster.jpoint_2019.request.UpdateUserRequest;
-import ru.sportmaster.jpoint_2019.response.CreateUserResponse;
-import ru.sportmaster.jpoint_2019.response.Error;
-import ru.sportmaster.jpoint_2019.response.SuccessOrErrorResponse;
-import ru.sportmaster.jpoint_2019.service.UserService;
+import ru.sportmaster.smlab.quiz.exception.UserCreationException;
+import ru.sportmaster.smlab.quiz.exception.UserNotFoundException;
+import ru.sportmaster.smlab.quiz.request.CreateUserRequest;
+import ru.sportmaster.smlab.quiz.request.FindUserRequest;
+import ru.sportmaster.smlab.quiz.request.UpdateUserRequest;
+import ru.sportmaster.smlab.quiz.response.CreateUserResponse;
+import ru.sportmaster.smlab.quiz.response.Error;
+import ru.sportmaster.smlab.quiz.response.SuccessOrErrorResponse;
+import ru.sportmaster.smlab.quiz.service.UserService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;

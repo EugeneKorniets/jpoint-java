@@ -1,17 +1,17 @@
-package ru.sportmaster.jpoint_2019.service;
+package ru.sportmaster.smlab.quiz.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.sportmaster.jpoint_2019.exception.UserCreationException;
-import ru.sportmaster.jpoint_2019.exception.UserNotFoundException;
-import ru.sportmaster.jpoint_2019.jpa.entity.User;
-import ru.sportmaster.jpoint_2019.jpa.repository.UserRepository;
-import ru.sportmaster.jpoint_2019.request.CreateUserRequest;
-import ru.sportmaster.jpoint_2019.request.FindUserRequest;
-import ru.sportmaster.jpoint_2019.request.UpdateUserRequest;
+import ru.sportmaster.smlab.quiz.exception.UserCreationException;
+import ru.sportmaster.smlab.quiz.exception.UserNotFoundException;
+import ru.sportmaster.smlab.quiz.jpa.entity.User;
+import ru.sportmaster.smlab.quiz.jpa.repository.UserRepository;
+import ru.sportmaster.smlab.quiz.request.CreateUserRequest;
+import ru.sportmaster.smlab.quiz.request.FindUserRequest;
+import ru.sportmaster.smlab.quiz.request.UpdateUserRequest;
 
 import java.util.Collection;
 import java.util.Optional;

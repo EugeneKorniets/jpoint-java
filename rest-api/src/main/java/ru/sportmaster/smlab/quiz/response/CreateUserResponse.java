@@ -1,4 +1,4 @@
-package ru.sportmaster.jpoint_2019.response;
+package ru.sportmaster.smlab.quiz.response;
 
 import lombok.Getter;
 import lombok.Setter;

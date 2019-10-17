@@ -1,4 +1,4 @@
-package ru.sportmaster.jpoint_2019.exception;
+package ru.sportmaster.smlab.quiz.exception;
 
 import lombok.Getter;
 

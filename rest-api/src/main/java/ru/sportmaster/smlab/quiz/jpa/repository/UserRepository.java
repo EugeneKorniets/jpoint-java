@@ -1,10 +1,10 @@
-package ru.sportmaster.jpoint_2019.jpa.repository;
+package ru.sportmaster.smlab.quiz.jpa.repository;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
-import ru.sportmaster.jpoint_2019.jpa.entity.User;
+import ru.sportmaster.smlab.quiz.jpa.entity.User;
 
 import java.util.Collection;
 

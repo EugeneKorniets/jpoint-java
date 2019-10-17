@@ -1,4 +1,4 @@
-package ru.sportmaster.jpoint_2019.jpa.entity;
+package ru.sportmaster.smlab.quiz.jpa.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
