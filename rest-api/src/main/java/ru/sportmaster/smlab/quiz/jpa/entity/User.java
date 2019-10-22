@@ -17,13 +17,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
-
     private String nickname;
     private String name;
     private String surname;
-    @Column(unique = true)
     private String phone;
-    @Column(unique = true)
     private String email;
 
     private int score;

@@ -2,6 +2,7 @@ package ru.sportmaster.smlab.quiz.service;
 
 import ru.sportmaster.smlab.quiz.exception.UserCreationException;
 import ru.sportmaster.smlab.quiz.jpa.entity.User;
+import ru.sportmaster.smlab.quiz.request.CreateTelegramUserRequest;
 import ru.sportmaster.smlab.quiz.request.CreateUserRequest;
 import ru.sportmaster.smlab.quiz.request.FindUserRequest;
 import ru.sportmaster.smlab.quiz.request.UpdateUserRequest;
@@ -13,6 +14,8 @@ public interface UserService {
     User findById(int id);
 
     int create(CreateUserRequest createUserRequest) throws UserCreationException;
+
+    int create(CreateTelegramUserRequest createTelegramUserRequest) throws UserCreationException;
 
     void update(UpdateUserRequest updateUserRequest) throws Exception;
 

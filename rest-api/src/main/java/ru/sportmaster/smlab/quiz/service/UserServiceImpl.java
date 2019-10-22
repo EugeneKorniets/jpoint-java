@@ -9,6 +9,7 @@ import ru.sportmaster.smlab.quiz.exception.UserCreationException;
 import ru.sportmaster.smlab.quiz.exception.UserNotFoundException;
 import ru.sportmaster.smlab.quiz.jpa.entity.User;
 import ru.sportmaster.smlab.quiz.jpa.repository.UserRepository;
+import ru.sportmaster.smlab.quiz.request.CreateTelegramUserRequest;
 import ru.sportmaster.smlab.quiz.request.CreateUserRequest;
 import ru.sportmaster.smlab.quiz.request.FindUserRequest;
 import ru.sportmaster.smlab.quiz.request.UpdateUserRequest;
@@ -61,6 +62,45 @@ public class UserServiceImpl implements UserService {
             return savedUser.getId();
         } catch (Exception e) {
             log.error("Error while trying to save user for request={}", createUserRequest, e);
+            final Optional<Throwable> throwableOptional = Optional.ofNullable(e.getCause());
+            if (throwableOptional.isPresent()) {
+                final Throwable throwable = throwableOptional.get();
+                if (throwable instanceof ConstraintViolationException) {
+                    final ConstraintViolationException violationException = (ConstraintViolationException) throwable;
+                    if ((violationException).getConstraintName().contains("(EMAIL)")) {
+                        throw new UserCreationException("Email не уникален", e, UserCreationException.EMAIL_NOT_UNIQUE);
+                    } else if ((violationException).getConstraintName().contains("(PHONE)")) {
+                        throw new UserCreationException("Телефон не уникален", e, UserCreationException.PHONE_NOT_UNIQUE);
+                    } else {
+                        throw new UserCreationException(e, UserCreationException.REASON_IS_NOT_KNOWN);
+                    }
+                } else {
+                    throw new UserCreationException(e, UserCreationException.REASON_IS_NOT_KNOWN);
+                }
+            } else {
+                throw new UserCreationException(e, UserCreationException.REASON_IS_NOT_KNOWN);
+            }
+        }
+    }
+
+    public int create(CreateTelegramUserRequest createTelegramUserRequest) throws UserCreationException {
+        log.info("Getting new createTelegramUser request={}", createTelegramUserRequest);
+
+        final User newUser = new User();
+        newUser.setName(createTelegramUserRequest.getName());
+        newUser.setNickname(createTelegramUserRequest.getNickname());
+        newUser.setSurname(createTelegramUserRequest.getSurname());
+        newUser.setScore(createTelegramUserRequest.getScore());
+        newUser.setEmail(createTelegramUserRequest.getEmail());
+        newUser.setActive(true);
+        newUser.setProcessed(false);
+
+        try {
+            final User savedUser = userRepository.save(newUser);
+            log.info("User={} successfully created", savedUser);
+            return savedUser.getId();
+        } catch (Exception e) {
+            log.error("Error while trying to save user for request={}", createTelegramUserRequest, e);
             final Optional<Throwable> throwableOptional = Optional.ofNullable(e.getCause());
             if (throwableOptional.isPresent()) {
                 final Throwable throwable = throwableOptional.get();

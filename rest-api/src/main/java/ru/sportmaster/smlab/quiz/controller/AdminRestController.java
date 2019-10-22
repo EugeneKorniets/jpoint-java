@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import ru.sportmaster.smlab.quiz.exception.UserCreationException;
 import ru.sportmaster.smlab.quiz.exception.UserNotFoundException;
+import ru.sportmaster.smlab.quiz.request.CreateTelegramUserRequest;
 import ru.sportmaster.smlab.quiz.request.CreateUserRequest;
 import ru.sportmaster.smlab.quiz.request.FindUserRequest;
 import ru.sportmaster.smlab.quiz.request.UpdateUserRequest;
@@ -61,6 +62,24 @@ public class AdminRestController {
 
         } catch (UserCreationException e) {
             log.info("Error during creating user for request={}", createUserRequest, e);
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            createUserResponse.setError(new Error(String.valueOf(e.getCode()), e.getMessage()));
+        }
+        return createUserResponse;
+    }
+
+    @PostMapping("/create/telegram")
+    public Object create(@Valid @RequestBody CreateTelegramUserRequest createTelegramUserRequest, HttpServletResponse httpServletResponse) {
+
+        log.info("Create user from telegram request={}", createTelegramUserRequest);
+        final CreateUserResponse createUserResponse = new CreateUserResponse();
+        try {
+            final int id = userService.create(createTelegramUserRequest);
+            httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
+            createUserResponse.setId(id);
+
+        } catch (UserCreationException e) {
+            log.info("Error during creating user for request={}", createTelegramUserRequest, e);
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             createUserResponse.setError(new Error(String.valueOf(e.getCode()), e.getMessage()));
         }
